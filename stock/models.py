@@ -33,3 +33,4 @@ class Forecast(models.Model):
     type = models.IntegerField()
     value = models.IntegerField()
     user = models.ForeignKey(User)
+    last_forecast = models.DateTimeField(default=timezone.now)
