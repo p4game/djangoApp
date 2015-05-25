@@ -15,5 +15,6 @@ def logout_view(request):
     return HttpResponse("logout")
 
 def getForecastByUser(request):
+
     return HttpResponse("getForecastByUser")
 
