@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from stock.views import login_view, logout_view
+from stock.views import login_view, logout_view, show_forecast
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/', login_view),
+    url(r'^accounts/login/', login_view),
     url(r'^logout/', logout_view),
+    url(r'^forecast/view/', show_forecast),
 ]

@@ -21,13 +21,18 @@ class User(models.Model):
         return True
 
     def check_password(self, password):
-        print(self.hashed_password(password))
-        print(self.password)
         if self.hashed_password(password) == self.password:
             return True
         else:
             return False
 
+    def get_forecasts_by_type(self, type):
+        list = self.forecast_set.filter(type = type)
+        len = list.count()
+        for i in range(0, len):
+            forecast = list[i]
+            print(forecast.type, forecast.value,timezone.localtime(forecast.last_forecast))
+        print(list)
 
 class Forecast(models.Model):
     type = models.IntegerField()
