@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/', login_view),
     url(r'^logout/', logout_view),
-    url(r'^forecast/view/', show_forecast),
+    url(r'^forecast/index/', show_forecast),
 ]
