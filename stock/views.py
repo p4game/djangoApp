@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate,login,logout,get_user,get_user_mode
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+import json
+from stock.forecast import ForecastController
 def login_view(request):
     account = request.GET["account"]
     password = request.GET["password"]
@@ -15,13 +17,13 @@ def logout_view(request):
     logout(request)
     return HttpResponse("logout")
 
+forecast = ForecastController()
 @login_required
 def show_forecast(request):
     user = get_user(request)
-    print(type(user.get_forecasts_by_type(1)))
     user_model = get_user_model()
-
-    encodedjson = serializers.serialize("json", user.get_forecasts_by_type(1))
-    #print(encodedjson)
-    return HttpResponse(user.toJSON())
+    list = forecast.get_day_list()
+    #print(json.dumps(list))
+    #serializers.serialize("json", list)
+    return HttpResponse(serializers.serialize("json", list))
 

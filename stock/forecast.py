@@ -1,8 +1,18 @@
 from stock.models import Forecast, User
 class ForecastController:
-    def get_list_by_user(account):
-        user = User.objects.get(account=account)
-        user.forecast_set.all()
+    list = []
+    def __init__(self):
+        print("ForecastController init")
+
+    def get_day_list(self):
+        print(len(self.list))
+        if len(self.list) == 0 :
+            print("aaaaaaaa")
+            self.list = Forecast.objects.filter(type=1)
+
+        #self.list = [1,2,2,3]
+
+        return self.list
 
 
 
