@@ -1,14 +1,15 @@
 from stock.models import Forecast, User
 class ForecastController:
-    list = []
+    list = None
     def __init__(self):
         print("ForecastController init")
 
     def get_day_list(self):
-        print(len(self.list))
-        if len(self.list) == 0 :
-            print("aaaaaaaa")
-            self.list = Forecast.objects.filter(type=1)
+        if self.list == None :
+            self.list = []
+            forecasts = Forecast.objects.filter(type=1)
+            for k in forecasts:
+                print(k)
 
         #self.list = [1,2,2,3]
 
